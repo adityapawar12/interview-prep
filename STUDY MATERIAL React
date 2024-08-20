@@ -1,0 +1,167 @@
+React Study Material 
+
+Create App - npx create-react-app my-app
+
+@@Lifecycle -- 
+{    
+    Its depending on version -- 
+    react version 16.4
+
+    Creation Time
+    1. Constructor -- Its not Lifecycle hook insted its a default ES6 Class feature =>  super props
+        DO  - Basic initialization 
+        dont - http, google analytic, store in local browser  --performance issue, unnecessary re-render cycle
+    2. static getDirevedFromProps --Its the static method Whenever your props change for your Classbased Component you can sink your state to them 
+        rarly use 
+        Do - if you have some scenario where props of your component can change and then you want to update some internal state of that component, then this is the hook to use 
+        Dont - http 
+        getDirevedFromProps -- return newstate or null 
+
+    3. Render -- returns JSX is really job of this method.we can use it only to prepare the data which we need to layout our JSX code and to render the HTML code
+    render child component -- every child component Lifecycle 
+    4. componentDidMount --  call third party api which needed dom 
+        do 
+        dont
+
+    Update Time -- 
+    1. static getDirevedFromProps -- Same as above
+    2 ShouldComponentUpdate - return true or false -- check prev state and new state and update state 
+    3 render -- Construct for virtual DOM then update to main DOM
+    Update child comp props 
+    4 getSnapshotBeforeUpdate -- 
+    this method actuallly replace componentwillupdate, last dom operation, return null or msg which componentDidUpdate will print at 3rd arg
+    5 componentDidUpdate 
+
+    Destroy 
+
+    componentWillUnmount -- clear 
+}
+@@Why do use arrow function -- 
+
+@@How can we stop from re-rendering --
+    {
+    ShouldComponentUpdate -- check for render pass true if state change or want to render 
+    React.PureComponent 
+    React.memo -- for function based component
+}
+@@UNI-DIRECTIONAL Dataflow-- 
+    {
+    As we know react is not changing data by making changes in Dom It need to get updates by method or js file 
+}
+@@Lift state up -- 
+    {while using same state or data for two different component, we can bind that both component in single parent component for same time synchronization. }
+
+@@difference between Controlled and Un-Controlled Component{
+    Controlled component must have bond data like value={state} or onClick={method}
+    function FormValidation(props) {
+        let [inputValue, setInputValue] = useState("");
+        let updateInput = e => {
+        setInputValue(e.target.value);
+        };
+        return (
+        <div>
+            <form>
+            <input type="text" value={inputValue} onChange={updateInput} />
+            </form>
+        </div>
+        );
+    }
+    
+    UN-Controlled component not have any bonding, get value by ref() method
+    function FormValidation(props) {
+        let inputValue = React.createRef();
+        let handleSubmit = e => {
+        alert(`Input value: ${inputValue.current.value}`);
+        e.preventDefault();
+        };
+        return (
+        <div>
+            <form onSubmit={handleSubmit}>
+            <input type="text" ref={inputValue} />
+            <button type="submit">Submit</button>
+            </form>
+        </div>
+        );
+    }
+
+
+@@CONTEXT --{
+     As we know we can pass data from one component to another component, we are passing data from parent component to child component, But when we need to pass data form parent to grand child component it actuallly go throgh the child component because props can be pass down one level at a time 
+
+    CONTEXT has new machanisum that allows us to actuallly pass data from one component down to as many components deep as you want to within that of sort tree
+
+    Syntax -- 
+
+    const Context = React.createContext()
+    App comp --
+    <Context.Provider value={1}> <child called></Context.Provider>
+
+    Child comp -- <grndchild called>
+
+    grandxhild -- 
+    const context = useContext(Context);
+    context //as we pass 1 will print we can pass as an object throgh value 
+}
+
+@@High Order Component -- {
+    its effectively a function that recievesa component as an argument and then returns newly augment that component  }
+
+@@Hooks for Functional Component {
+    useEffect --Its not Lifecycle hook its react hook 
+
+    every render cycle  -- 
+    useEffect(()=>{
+    })
+
+    For specific prop  -- 
+    useEffect(()=>{
+    }, [prop.name])
+
+    Only for once  -- 
+    useEffect(()=>{
+    }, [])
+
+    For Clear  -- 
+    useEffect(()=>{
+
+        return () => {
+        //clearing here    
+        }
+    }, [])
+    }
+
+@@React MEMO --{
+    As we know ShouldComponentUpdate, but its use only in Class based component 
+    we can wrap our export with React.memo(componentName) 
+    This basically uses memoization. which is a technique where react will memoize or store a snapshot of this component and only if its inputs changes, it'll re-render it, other wise if inputs not changes react will give that stored component 
+
+    Its great way to optimization for functional component 
+
+    @@callback hooks
+        functionName- which function need to be memoize
+    useCallBack(functionName, [])
+}
+
+@@ Class based --Function based{
+    Class based -- access to state 
+                Lifecycle hooks
+
+                access state by this keyword
+
+    Syntax : Class XY Extends Component 
+
+    Used when need to manage State or access to Lifecycle hooks and you dont want to use react hooks 
+
+
+
+    Function based - access to state 
+                        Not Lifecycle hooks
+
+                        access state like props 
+
+    Syntax : const XY = (props) => { ... } 
+    }
+
+
+
+@@Redux

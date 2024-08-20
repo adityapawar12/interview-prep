@@ -1,0 +1,25 @@
+DATABASE Interview Questions 
+
+Differce between relational DB / No SQL
+
+1.Datatypes in SQL/Postgress
+
+2.Explain Join's, List of Joins
+
+4.Explain Keys (PK/FK/CK)
+
+5.Date Function 
+
+6.Differce between SELECT DISTINCT / Group by
+
+7.Create Sample Schema
+
+8.Find Second Highest Number from given data 
+
+9.Differce between table and view. Which is faster. 
+
+10.Differce functions and stored procedures. what are the use cases.
+
+11.Worked on JSONb Datatypes ?? functions provided by JSONb Datatypes
+
+12.What are indexes. Types of indexe

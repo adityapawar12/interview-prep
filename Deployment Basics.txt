@@ -1,0 +1,9 @@
+Deployment Basics
+
+1.Worked on kafka ?
+
+2.Worked on redis ?
+
+3.Worked on Deployments (AWS ec2 instance/Kubernetes/CICD) ?
+
+4.Worked on Docker Containers ?

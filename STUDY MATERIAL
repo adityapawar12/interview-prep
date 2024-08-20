@@ -1,0 +1,183 @@
+Typescript -- Is a superset of Javascripts created by microsoft that adds optional types, classes async/await
+
+
+Directives -- Directives are used to change behavior of HTML DOM
+Types of Directives -- 
+(SAC)
+1 Structural --  Change the DOM layout by adding or removing element (add or remove )
+ex. ngFor,ngIf
+2 Attribute - Change the appearence and behavior of HTML element
+ex. [hidden]="hide()"
+it dosen't remove just hide or change in DOM or enable or disable 
+3 Component - Directive with templates its like a user control 
+
+we can create our own directive -- 
+@Directive({selector : '[nameOfDirective]'})
+export class nameOfDirective{
+    cunstructor(el:Element){
+        el.nativeElement.style.backgroundColor = "yellow";
+    }
+}
+
+Use- <p nameOfDirective >sagar</p>
+
+Decorators : @component, @NgModule, @input, @output
+
+Data Biniding -- 
+Controller to view (expression binding)  -- use Interpolution 
+View to Controller (event binding) --  click on button or send from view to controller 
+Two way Binding (Property Binding) -- you can send data from view to controller or controller to view 
+
+
+Architectire of Angular -- 
+Template 
+Component 
+Module 
+Binding 
+Directives
+Service 
+DI(Dependancy Injection)
+
+
+Lazy Loading -- Demand loading 
+LoadChildren
+
+
+AngularJs                   vs                Angular
+1 or 1.X                                    2+
+Use Javascripts to build application         Use Typescripts to build application
+MVC Formate                                     Component Based 
+Mobile Browser not supp                         Mobile Supported
+CLI not Supported                                   CLI
+Lazy loading not supp                               Supported Lazy Loading 
+
+
+
+Angular Compiler -- JIT(Just In Time) And AOT (Ahead of Time)
+
+JIT -- JIT Compile in Browser at run time 
+if we declare one method which doesn't exist it'll give us err at browser site when method get called 
+
+User have to wait to check err when and where 
+
+AOT --- Compile application at Build Time 
+
+When we run code by using "ng serve --aot true" it will directly show err function doen't exist at cmd side  
+
+
+User not need to wait to check err 
+
+
+
+Module's --- Modules are logical boundaries in your application and the application is divided into seprate module to saperate Functionallity of your application
+
+
+we declare module by using @NgModule, It takes multiple things as input like imports, declareations, bootstrap 
+
+
+
+---Ng Hooks --
+ngOnChanges() - Responds when Angular sets/resets data-bound input properties.
+ngOnInit() - Initialize the directive/component after Angular first displays the data-bound properties and sets the directive/component's input properties/
+ngDoCheck() - Detect and act upon changes that Angular can't or won't detect on its own.
+ngAfterContentInit() - Responds after Angular projects external content into the component's view.
+ngAfterContentChecked() - Respond after Angular checks the content projected into the component.
+ngAfterViewInit() - Respond after Angular initializes the component's views and child views.
+ngAfterViewChecked() - Respond after Angular checks the component's views and child views.
+ngOnDestroy - Cleanup just before Angular destroys the directive/component.
+
+
+
+Difference Between Constructor And ngOnInit
+-- Typescript classes has default class method called cunstructor which is normally use for initiallization purpose 
+
+-- whenever your object is created it's auto called cunstructor menthod
+
+-- ngOnInit is very specific to angular, whenever object get create angular bind all through the lifecycle stages 
+
+ngOnInit is used for all angular binding like docheck ngOnChanges, 
+
+
+
+Async Pipes -- the async pipe subscribes to an observable or promises to return the latest value it has emitted
+when new value is emitted, pipe marks component to be checked for changes 
+
+
+Circular dependancy ---- 
+
+
+
+@@ Authorization in Angular{
+    Angular provides a concept called Router Guards which can be used to prevent unauthorised access to certain part of the application through routing. Angular provides multiple guards and they are as follows:
+
+    1.CanActivate − Used to stop the access to a route.
+
+    2.CanActivateChild − Used to stop the access to a child route.
+
+    3.CanDeactivate − Used to stop ongoing process getting feedback from user. For example, delete process can be stop if the user replies in negative.
+
+    4.Resolve − Used to pre-fetch the data before navigating to the route.
+
+    5.CanLoad − Used to load assets.
+    ---------------------------------------------------------------------------------------------------------
+    1. CanActivate example -- 
+        a. Create new component like ABCDGuard
+        b. import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
+        c. implements from CanActivate 
+        d.   constructor(private authService: AuthService, private router: Router) {}
+        e.canActivate(
+            next: ActivatedRouteSnapshot,
+            state: RouterStateSnapshot): boolean | UrlTree {
+                let url: string = state.url;
+
+                    return this.checkLogin(url);
+                }
+
+                checkLogin(url: string): true | UrlTree {
+                    console.log("Url: " + url)
+                    let val: string = localStorage.getItem('isUserLoggedIn');
+
+                    if(val != null && val == "true"){
+                        if(url == "/login")
+                        this.router.parseUrl('/expenses');
+                        else 
+                        return true;
+                    } else {
+                        return this.router.parseUrl('/login');
+                    }
+                }
+
+        f. checkLogin will check whether the localStorage has the user information and if it is available, then it returns true.
+        If the user is logged in and goes to login page, it will redirect the user to expenses page
+        If the user is not logged in, then the user will be redirected to login page.
+
+        g. { path: 'expenses', component: ExpenseEntryListComponent, canActivate: [ExpenseGuard]},
+        { path: 'expenses/detail/:id', component: ExpenseEntryComponent, canActivate: [ExpenseGuard]},
+}
+
+
+
+
+Observables	                                        Promises
+Emit multiple values over a period of time.	        Emit a single value at a time.
+
+Observables -- Are lazy: they’re not executed until we subscribe to them using the subscribe() method.	
+
+
+Promises --- Are not lazy: execute immediately after creation.
+Have subscriptions that are cancellable using the unsubscribe() method, which stops the listener from receiving further values.	Are not cancellable.
+
+Provide the map for forEach, filter, reduce, retry, and retryWhen operators.	Don’t provide any operations.
+Deliver errors to the subscribers.	Push errors to the child promises.
+
+
+
+const promise1 = new Promise((resolve, reject) => {
+  throw 'Uh-oh!';
+});
+
+promise1
+    .then(resolveHandler, rejectHandler)
+    catch((error) => {
+        console.error(error);
+    });

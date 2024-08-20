@@ -1,0 +1,411 @@
+Node Interview Questions 
+
+1.Difference between Javascript and NodeJs
+- JavaScript is a programming language primarily used for client-side web development to create dynamic web pages.
+- while Node is a runtime environment that allows JavaScript to be executed on the server side to build scalable network applications.
+
+- Javascript can run in any browser engine.
+- V8 is the Javascript engine inside of node.js that parses and runs Javascript. 
+
+- Javascript can only be run in the browsers.
+- We can run Javascript outside the browser with the help of NodeJS.
+
+
+2.What is NodeJs
+- Node js is a cross-platform and open source asynchronous event-driven JavaScript runtime environment which allows us to execute JavaScript code on the server side.
+- Node js allows Javascript code to run outside the browser. Nodejs comes with a lot of modules and mostly used in web development.
+- It can create, open, close, read, write and close the file on server or collect form data and at the same time can add, create, modify, delete data in your DB.
+
+
+3.Benefit of NodeJs
+- Node js is a cross-platform and open source runtime environment for javascript.
+- It can be used for async programming and is highly scalable in nature.
+- Node js single threaded and is Built on the V8 JavaScript engine from Chrome, Node. js compiles JavaScript into machine code for efficient execution.
+
+
+4.Differce between frontend and backend (optional question)
+- The frontend is what your users see and includes visual elements like buttons, checkboxes, graphics, and text messages. 
+- It allows your users to interact with your application. 
+- The backend is the data and infrastructure that make your application work. It stores and processes application data for your users.
+
+5.What is Middleware
+- Middleware is a request handler that allows you to intercept and manipulate requests and responses before they reach route handlers. 
+- They are the functions that are invoked by the Express.js routing layer.
+- These are function that have access to the request object, the response object, and the next function in the application’s request-response cycle.
+- It is a flexible tool that helps in adding functionalities like logging, authentication, error handling, and more to Express applications. 
+
+
+6.Express Framework
+- Express.js is a fast, flexible and minimalist web framework for Node.js. 
+- It’s effectively a tool that simplifies building web applications and APIs using JavaScript on the server side. 
+- Express is an open-source framework that is developed and maintained by the Node.js foundation.
+- It makes it easier to organize your application’s functionality with middleware and routing.
+
+
+7.Timeout Functions
+- In JavaScript, the setTimeout() function is vey good for adding delays or scheduling the execution of a specific function after a certain period. 
+- It’s a key feature of both browser environments and Node.js, enabling asynchronous behavior in code execution.
+```
+const myFunction = (firstParam, secondParam) => {};
+const id = setTimeout(myFunction, 2000, firstParam, secondParam);
+```
+
+- setTimeout returns the timer id. This is generally not used, but you can store this id, and clear it if you want to delete this scheduled function execution.
+```
+clearTimeout(id);
+```
+
+- The setImmediate function is used to execute a function right after the current event loop finishes. 
+- In simple terms, the given function is called after all the statements in the script are executed. 
+- It is the same as calling the setTimeout function with zero delays. 
+- This is especially useful to avoid blocking the CPU on intensive tasks and 
+- let other functions be executed while performing a heavy calculation, by queuing functions in the scheduler.
+
+- setInterval is a function similar to setTimeout, with a difference: instead of running the callback function once, 
+- it will run it forever, at the specific time interval you specify
+- unless you tell it to stop, using clearInterval, passing it the interval id that setInterval returned
+
+```
+const id = setInterval(() => {
+  // runs every 2 seconds
+}, 2000);
+clearInterval(id);
+```
+- The setTimeout, setImmediate and setInterval functions can be found in the Timers module of Node.js.\
+
+- Understanding process.nextTick() method: Whenever a new queue of operations is initialized we can think of it as a new tick. 
+- The process.nextTick() method adds the callback function to the start of the next event queue. 
+- It is to be noted that, at the start of the program process.nextTick() method is called for the first time before the event loop is processed. 
+- process.nextTick(callback);
+
+- Understanding setImmdeiate() method: Whenever we call setImmediate() method, it’s callback function is placed in the check phase of the next event queue. 
+- There is slight detail to be noted here that setImmediate() method is called in the poll phase and it’s callback functions are invoked in the check phase.
+```
+setImmediate(function A() {
+    console.log("1st immediate");
+});
+ 
+setImmediate(function B() {
+    console.log("2nd immediate");
+});
+ 
+process.nextTick(function C() {
+    console.log("1st process");
+});
+ 
+process.nextTick(function D() {
+    console.log("2nd process");
+});
+
+// First event queue ends here
+console.log("program started");
+ ```
+- In the first event queue only ‘program started is printed’.
+- Then second event queue is started and function C i.e. callback of process.nextTick() method is placed at the start of the event queue. 
+- C is executed and the queue ends.
+- Then previous event queue ends and third event queue is initialized with callback D.
+- Then callback function A of setImmdeiate() method is placed in the followed by B. Now, the third event queue looks like this,
+
+8.What is Closuer any example.
+- A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). 
+- In other words, a closure gives you access to an outer function's scope(i.e. all its variables and functions defined in the outer function) from an inner function. 
+- In JavaScript, closures are created every time a function is created, at function creation time
+```
+function init() {
+  var name = "Mozilla"; // name is a local variable created by init
+  function displayName() {
+    // displayName() is the inner function, that forms the closure
+    console.log(name); // use variable declared in the parent function
+  }
+  displayName();
+}
+init();
+```
+
+9.Express Streams
+- Streams are one of the fundamental concepts of Node.js. Streams are a type of data-handling methods and are used to read or write input into output sequentially. 
+- Streams are used to handle reading/writing files or exchanging information in an efficient way.
+- Streams are objects in Node.js that lets the user read data from a source or write data to a destination in a continuous manner.
+- Time Efficient: We don’t have to wait until entire file has been transmitted. We can start processing data as soon as we have it.
+- Memory Efficient: We don’t have to load huge amount of data in memory before we start processing.
+
+- types of streams
+a. Writable: We can write data to these streams. Example: fs.createWriteStream().
+b. Readable: We can read data from these streams. Example: fs.createReadStream().
+c. Duplex: Streams that are both, Writable as well as Readable. Example: net.socket.
+d. Transform: Streams that can modify or transform the data as it is written and read. Example: zlib.createDeflate.
+
+A. readable stream : 
+// Sample JavaScript Code for creating 
+// a Readable Stream 
+// Accessing streams 
+const { Readable } = require('stream'); 
+  
+// Reading the data  
+const inStream = new Readable({ 
+    read() { } 
+}); 
+  
+// Pushing the data to the stream 
+inStream.push('GeeksForGeeks : '); 
+inStream.push( 
+    'A Computer Science portal for Geeks'); 
+  
+// Indicates that no more data is 
+// left in the stream 
+inStream.push(null); 
+  
+// Echoing data to the standard output 
+inStream.pipe(process.stdout); 
+
+B. Writable stream :
+// Sample JavaScript Code for 
+// Writable Stream 
+// Accessing Streams 
+const { Writable } = require('stream'); 
+  
+// Whatever is passed in standard  
+// input is out streamed here. 
+const outStream = new Writable({ 
+  
+    // The Write function takes three  
+    // arguments 
+    // Chunk is for Buffer 
+    // Encoding is used in case we want 
+    // to configure the stream differently 
+    // In this sample code, Encoding is ignored  
+    // callback is used to indicate  
+    // successful execution 
+    write(chunk, encoding, callback) { 
+        console.log(chunk.toString()); 
+        callback(); 
+    } 
+  
+}); 
+  
+// Echo the data to the standard output 
+process.stdin.pipe(outStream); 
+
+
+10.File functions -- how to read/write large file
+
+
+13.Difference between authentication and authorization
+- Authentication is the method of verifying the identity of a consumer or system to ensure they’re who they claim to be. 
+- It involves checking credentials which include usernames, passwords. 
+- This step is vital for securing access to systems, programs, and sensitive records. 
+- By confirming identities, authentication saves you from unauthorized entry and protects you against safety breaches.
+
+- Authorization is the method of figuring out and granting permissions to a demonstrated user or system, 
+- specifying what assets they can access and what actions they’re allowed to carry out. 
+- It comes after authentication and guarantees that the authenticated entity has the proper rights to use certain data, applications, or services. 
+- This step is important for implementing protection guidelines and controlling access within the system, thereby stopping unauthorized activities.
+
+
+14.Explain Annonymous function
+- Anonymous Function is a function that does not have any name associated with it. 
+- Normally we use the function keyword before the function name to define a function in JavaScript. 
+- However, in anonymous functions in JavaScript, we use only the function keyword without the function name.
+- An anonymous function is not accessible after its initial creation, it can only be accessed by a variable it is stored in as a function as a value.
+- common use of Annonymous function.
+setTimeout(function () { 
+  console.log("Welcome to GeeksforGeeks!"); 
+}, 2000); 
+- Self executing function.
+(function () { 
+  console.log("Welcome to GeeksforGeeks!"); 
+})();
+- ES6 introduced a new and shorter way of declaring an anonymous function, which is known as Arrow Functions. 
+- In an Arrow function, everything remains the same, except here we don’t need the function keyword also. 
+- Here, we define the function by a single parenthesis and then ‘=>’ followed by the function body.
+let greet = () => console.log("Welcome to GeeksforGeeks!"); 
+greet(); 
+
+
+15.Node is single threaded or multithreaded
+- Yes Node.js, employs a single-threaded model. This means it uses a single thread to handle multiple tasks.
+- Traditional server-side applications often use a multi-threaded approach, where multiple threads handle multiple tasks concurrently.
+
+
+16.if single threaded how it handled multiple requests/concurrency 
+- To achieve this, Node.js leverages an event-driven, non-blocking I/O model.
+
+17.Event Loop/How it work 
+- The event loop is a process that continuously monitors both the call stack and the event queue and checks whether or not the call stack is empty. 
+- If the call stack is empty and there are pending events in the event queue, the event loop dequeues the event from the event queue and pushes it to the call stack. 
+- The call stack executes the event, and any additional events generated during the execution are added to the end of the event queue.
+
+- Note: The event loop allows Node.js to perform non-blocking I/O operations, even though JavaScript is single-threaded, 
+- by offloading operations to the system kernel whenever possible. Since most modern kernels are multi-threaded, 
+- they can handle multiple operations executing in the background.
+
+
+18.Callback Function/ Callback Hell
+- A callback function is a function passed into another function as an argument. 
+- This function is invoked inside the outer function to complete an action. Let's take a simple example of how to use callback function
+function callbackFunction(name) {
+  console.log("Hello " + name);
+}
+
+function outerFunction(callback) {
+  let name = prompt("Please enter your name.");
+  callback(name);
+}
+
+outerFunction(callbackFunction);
+
+- The callbacks are needed because javascript is an event driven language. 
+- That means instead of waiting for a response javascript will keep executing while listening for other events. 
+- Let's take an example with the first function invoking an API call(simulated by setTimeout) and the next function which logs the message.
+function firstFunction() {
+  // Simulate a code delay
+  setTimeout(function () {
+    console.log("First function called");
+  }, 1000);
+}
+function secondFunction() {
+  console.log("Second function called");
+}
+firstFunction();
+secondFunction();
+Output;
+// Second function called
+// First function called
+- As observed from the output, javascript didn't wait for the response of the first function and the remaining code block got executed. 
+- So callbacks are used in a way to make sure that certain code doesn’t execute until the other code finishes execution.
+
+- Callback Hell is an anti-pattern with multiple nested callbacks which makes code hard to read and debug when dealing with asynchronous logic. 
+- The callback hell looks like below,
+async1(function(){
+    async2(function(){
+        async3(function(){
+            async4(function(){
+                ....
+            });
+        });
+    });
+});
+- You can nest one callback inside in another callback to execute the actions sequentially one by one. This is known as callbacks in callbacks.
+loadScript("/script1.js", function (script) {
+  console.log("first script is loaded");
+
+  loadScript("/script2.js", function (script) {
+    console.log("second script is loaded");
+
+    loadScript("/script3.js", function (script) {
+      console.log("third script is loaded");
+      // after all scripts are loaded
+    });
+  });
+});
+
+19.Async Await
+- An async function is a function declared with the async keyword which enables asynchronous, promise-based behavior to be written in a cleaner style 
+- by avoiding promise chains. These functions can contain zero or more await expressions.
+- Let's take a below async function example,
+async function logger() {
+  let data = await fetch("http://someapi.com/users"); // pause until fetch returns
+  console.log(data);
+}
+logger();
+- It is basically syntax sugar over ES2015 promises and generators.
+
+20.Promices / how to stop promise on specefic condition
+- A promise is an object that may produce a single value some time in the future with either a resolved value or a reason that it’s not resolved
+- (for example, network error). It will be in one of the 3 possible states: fulfilled, rejected, or pending.
+- The syntax of Promise creation looks like below,
+const promise = new Promise(
+  (resolve) => {
+    setTimeout(() => {
+      resolve("I'm a Promise!");
+    }, 5000);
+  },
+  (reject) => {}
+);
+promise.then((value) => console.log(value));
+
+- Promises are used to handle asynchronous operations. They provide an alternative approach for callbacks by reducing the callback hell and writing the cleaner code.
+- The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining. 
+- Let's take an example of promise chaining for calculating the final result,
+new Promise(function (resolve, reject) {
+  setTimeout(() => resolve(1), 1000);
+})
+  .then(function (result) {
+    console.log(result); // 1
+    return result * 2;
+  })
+  .then(function (result) {
+    console.log(result); // 2
+    return result * 3;
+  })
+  .then(function (result) {
+    console.log(result); // 6
+    return result * 4;
+  });
+
+- Promise.all is a promise that takes an array of promises as an input (an iterable), and it gets resolved when all the promises get resolved 
+- or any one of them gets rejected. For example, the syntax of promise.all method is below,
+Promise.all([Promise1, Promise2, Promise3]) .then(result) => {   console.log(result) } .catch(error => console.log(`Error in promises ${error}`))
+
+
+21.Validation Frameworks
+
+22.Testing Frameworks
+
+23.Higher order functions
+
+24.Differce higher oder functions/Array Functions (filter/map/reduce/foreach)
+
+----------------------------------------------
+https://www.programiz.com/javascript/online-compiler/
+// Interview questions
+Que -->> 1 
+
+const getuser = async(id)=>{
+return {id}
+}
+const a = [1,2,3,4,5,6,7];
+
+//Output : using the above fn
+[
+{id:1},
+{id:2}
+{id:3},
+...
+]
+----------
+ans -->> 
+const a = [1,2,3,4,5,6,7];
+const getuser = async(id)=>{
+    return {id}
+}
+
+const data = [];
+for (const element of a) {
+  const elObj = getuser(element);
+  data.push(elObj);
+}
+const result  = Promise.all(data).then((result) => {
+    console.log(result);
+}).catch((error) => {
+    console.log(error);
+})
+----------------------------------------------
+
+function b(){
+  var t = 1;
+  function c(){
+    console.log(t);
+    var t = 2;
+    console.log(t);
+  }
+  c();
+  console.log(t);
+}
+b();
+
+ans -->> 
+
+undefined
+2
+1

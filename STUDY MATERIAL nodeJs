@@ -1,0 +1,184 @@
+My self sagar govind kesarkar, I'm 26 years old living in thane near nitin company. I have completed my Bachelor of engineering from jondhale college of engineering. Currently i'm working at Medikabazaar as a senior software engineer. at Medikabazaar we developed SAAS(Software as a Service) offering project which is deployed at customer site as per their selection of services. We offer UserManagment, WarehouseManagment, ForecastEngine and etc services. My role in this project is 60/40, 60% as Team Leader and 40% as a Individual contributer. I'm responsible for requirement gathering from BA and Architect and then give timeline to manager make the task list and sharing details with the team, code review, brain storming on few task and working on complicated logics or common functionality. I have started this project from scratch and build microservice architecture for this project. This project is build in Angular as frontend and for backend we are using NodeJs, using Postgres DB for scalling and dynamic structure handling through JSON ability, Redis Cache for better performance, Kafka for messaging tool for multiple service communication or event triggering.
+
+NodeJs Study Material 
+@@Diff Javascript and node js
+{
+    Javascript                  vs                   Nodejs
+    programming language                    Interpriter and environment for Javascript
+    (which run in webBrowser)                which hold different languages          
+
+    mainly Used for client side activity    Accesing or performing any non blocking operation 
+    or web application                        of any system 
+
+    programming language                    Interpriter or running environment for Javascript which holds     
+    which runs in browser                    lots of other library
+
+    run in any browser                          help us to non blocking operation  at any operation system 
+    used for web application, verification      just like certificate details, hardware details
+    bussiness logic which we need to append in
+    screen without page refreshing    
+
+
+    Running Engine - SpiderMonkey,              Running Engine - V8 (Google Chrome)
+    Javascript core, V8 
+}
+
+@@ What is NodeJs - NodeJs is open source server environment, It can run on varios Platform, It uses Javascript at server end,  uses async programming.
+
+NodeJS is a cross-platform and opensource Javascript runtime environment that allows the javascript to be run on the server-side. Nodejs allows Javascript code to run outside the browser. Nodejs comes with a lot of modules and mostly used in web development.
+
+
+It can generate dynamic page contain. It can create, open, close, read, write and close the file on server or collect form data and at the same time can add, create, modify, delete data in your DB.
+
+
+@@ Benefit of NodeJs -- Open Source, simple and fast, used for async programming high scalable in nature, its single threaded uses single v8 engine, cross Platform, Community Support
+
+
+@@angular and NodeJs differce 
+
+
+@@package.json -- It's the heart of NodeJs Projects, It's the manifest file that contains the metadata of the project where we define the properties of the package.
+
+@@Middleware -- Middleware is function which recieves request and response objects. 
+
+commonly perform task --this are function that have access to request, have access to response and they have also access to the next middleware function in the application req resp cycle
+
+next middleware function denoted by next()
+
+
+@@Express -- Expressjs is a framework build on top of node js that facilates the management of the flow of data between server and routes at server side application.
+
+it is lightweight and flixible framework that provide wide range of features for web application 
+
+@@Timout 
+
+In previous Javascript we used SetTimeout() and for now NodeJs provides process.netxtTick() and setImmediate() 
+
+setImmediate() -- queue's its call back of event loop / maintain it call back
+
+process.netxtTick() -- doesnot maintain call backs 
+
+
+@bufferClass -- 
+
+
+@Timeout Function -- 
+1. setTimeout/clearTimeout - 
+2. setInterval/clearInterval
+3.setImmediate/clearImmediate
+4.process.netxtTick
+
+@@what pluging/lib for write unit test cases
+
+mocha - mocha is a test runner 
+chai  - chai is an assertion library 
+sinon  - sinon is perticularly used for stubbing, mocking or spying on any function or method
+
+@@testframeworks for NodeJs and Javascript -- jasmine, karma, cypress, famous PROTECTOR
+
+@@Closure -- Is a powerfull tool of node/Javascript which allows inner function to access the all other functions or variable that the outer function has 
+
+if we are using outer function and inside that using another function which access outer function variable, this variable called Closure 
+
+
+@@ReadFile and Create Read Stream
+
+ReadFile- it loads the whole file in the memory and then transfer it to client 
+
+Create read Stream - in Create read Stream the file is read in chunks and processed part by part until all parts done 
+client recieves data faster 
+
+
+
+@@overloading and overriding
+    {S.NO	        Method Overloading
+    1.	In the method overloading, methods or functions must have the same name and different signatures.
+    2.	Method overloading is a example of compile time polymorphism.
+    3.	In the method overloading, inheritance may or may not be required.
+    4.	Method overloading is performed between methods within the class.
+
+    Method Overriding
+    1. Whereas in the method overriding, methods or functions must have the same name and same signatures.
+    2. Whereas method overriding is a example of run time polymorphism.
+    3.Whereas in method overriding, inheritance always required.
+    4.Whereas method overriding is done between parent class and child class methods.}
+
+@@polymorphism{
+The word polymorphism means having many forms. ... Real life example of polymorphism: A person at the same time can have different characteristic. Like a man at the same time is a father, a husband, an employee. }
+
+
+@@Incapsulation --  to the bundling of data, along with the methods that operate on that data, into a single unit, 
+example - Railway ticket booking 
+
+@@Data Abstraction -- Hide essantial data from user, like ATM machine 
+
+
+@@annonymous function -- 
+let x = 10
+abcd.map(name => {
+    var abc = '10'
+    
+})
+
+
+named function -- function funcName(){
+    return 'scnnn'
+}
+
+@@Spawn method -- used to create a new process and lauch it using the command line.it create node module on the processor Node.js invokes this method when child proccess return data
+
+child_process.Spawn(command[agr][,options] )
+
+forks 
+child_process.Spawn(module_path[agr][,options] )
+
+
+@@Stubs -- Stubs are simply functions that are used to access and analyze individual component behavior
+
+when running test cases, Stubs are useful in providing the details of the function executed.
+ 
+@@@
+Object.seal -- only allow modify object property
+Object.freez -- can't add or change object 
+
+Object.defineProperty -- to not allow some property to be change
+Object.defineProperty(objName, 'propertyName', {
+    value : anything
+    writable : false
+})
+ 
+
+ES5 vs ES6
+1.In ES5, there is a one way of defining variables using var keyword. But ES6 has introduced two more ways of defining variables using keywords 'let' and 'const'
+2.ES6 provides easy way to define objects when the keys and the variable names are same. ex let name =10 , let obj {name};
+3.Merge Objects - Spread Operator
+4.Object Destructuring
+5.String Interpolation - template literal introduce tilt (``) easy concatination of string 
+6.Arrow Function
+7.Promise and Callback
+
+event loop - 
+execution always start with globle call stack in main thread it put in stack once execution done then pop out, if function take time it pop off the stack and pass to libuv and register callback in backgroud it'll perform on another thread
+once finsih again push to call stack
+
+core heart of libuv is eventloop - 
+    its c program 
+
+    method - 
+    timer queue - contains callbacks associatedwith timeout task like setTimeout and setInterval
+    io queue - async methods associated with http module or FS
+    check queue - setImmediate
+    close queue - callback close events 
+    microtask queue - 
+        nextTick queue - 
+        promise queue - 
+
+    1. Any callbacks in the micro task queues are executed. First, tasks in the nextTick queue and only then tasks in the promise queue 
+    2. All callbacks within the timer queue are executed
+    3. Callbacks in the micro task queues if present are executed. Again, first tasks in the nextTick queue and then tasks in the promise queue
+    4. All callbacks within the I/O queue are executed
+    5. Callbacks in the micro task queues if present are executed. nextTick queue followed by Promise queue.
+    6. All callbacks in the check queue are executed
+    7. Callbacks in the micro task queues if present are executed. Again, first tasks in the nextTick queue and then tasks in the promise queue
+
+REST API - an API that conforms to the design principles of the REST, or representational state transfer architectural style.
